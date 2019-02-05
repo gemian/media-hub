@@ -6,7 +6,7 @@ XSBC-Original-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.c
 Build-Depends: cmake,
                dbus-test-runner <!nocheck>,
                debhelper (>= 9),
-               dh-apparmor,
+#               dh-apparmor,
                doxygen <!nodoc>,
                google-mock <!nocheck>,
                graphviz <!nodoc>,
@@ -56,7 +56,7 @@ Package: media-hub
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-Suggests: apparmor (>= 2.8.95~2430-0ubuntu4~)
+Suggests: apparmor (>= 2.8.95)
 Description: Simple and lightweight media playback service
  Media Hub is a simple and lightweight service for media playback using
  DBus.
