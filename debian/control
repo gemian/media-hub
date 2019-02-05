@@ -1,7 +1,8 @@
 Source: media-hub
 Priority: optional
 Section: libs
-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
+Maintainer: Adam Boardman <adamboardman@gmail.com>
+XSBC-Original-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                dbus-test-runner <!nocheck>,
                debhelper (>= 9),
@@ -18,7 +19,7 @@ Build-Depends: cmake,
                libdbus-1-dev,
                libdbus-cpp-dev (>= 4.3.0),
                libgoogle-glog-dev,
-               libhybris-dev (>=0.1.0+git20131207+e452e83-0ubuntu30),
+               libhybris-dev,
                libprocess-cpp-dev,
                libproperties-cpp-dev,
                libgstreamer1.0-dev,
