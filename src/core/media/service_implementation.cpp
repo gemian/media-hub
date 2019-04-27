@@ -211,7 +211,7 @@ std::shared_ptr<media::Player> media::ServiceImplementation::create_session(
         // remove_player_for_key can destroy the player instance which in turn
         // destroys the "on_client_disconnected" signal whose destructor will wait
         // until all dispatches are done
-        d->configuration.external_services.io_service.post([this, key]()
+        d->configuration.external_services.io_context.post([this, key]()
         {
             if (!d->configuration.player_store->has_player_for_key(key))
                 return;

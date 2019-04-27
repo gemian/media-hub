@@ -86,10 +86,10 @@ struct DisplayStateLock : public media::power::StateController::Lock<media::powe
     static constexpr const std::int32_t the_invalid_cookie{-1};
 
     DisplayStateLock(const media::power::StateController::Ptr& parent,
-                     boost::asio::io_service& io_service,
+                     boost::asio::io_context& io_context,
                      const core::dbus::Object::Ptr& object)
         : parent{parent},
-          timeout{io_service},
+          timeout{io_context},
           object{object},
           cookie{the_invalid_cookie}
     {
@@ -357,7 +357,7 @@ struct StateController : public media::power::StateController,
 
     media::power::StateController::Lock<media::power::DisplayState>::Ptr display_state_lock() override
     {
-        return std::make_shared<impl::DisplayStateLock>(shared_from_this(), external_services.io_service, unity_screen);
+        return std::make_shared<impl::DisplayStateLock>(shared_from_this(), external_services.io_context, unity_screen);
     }
 
     media::helper::ExternalServices& external_services;

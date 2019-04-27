@@ -33,7 +33,7 @@ namespace media
 namespace helper
 {
 // A helper struct that bundles:
-//   * a dispatcher, i.e., the io_service
+//   * a dispatcher, i.e., the io_context
 //   * access to the system and session bus
 //
 // In addtion, it allows us to mock out services and
@@ -41,7 +41,7 @@ namespace helper
 struct ExternalServices
 {
     ExternalServices(const core::dbus::Bus::Ptr& session, const core::dbus::Bus::Ptr& system)
-        : keep_alive{io_service},
+        : keep_alive{io_context},
           session{session},
           system{system}
     {
@@ -54,23 +54,23 @@ struct ExternalServices
               core::dbus::Bus::Ptr{new core::dbus::Bus{core::dbus::WellKnownBus::system}}
           }
     {
-        session->install_executor(core::dbus::asio::make_executor(session, io_service));
-        system->install_executor(core::dbus::asio::make_executor(system, io_service));
+        session->install_executor(core::dbus::asio::make_executor(session, io_context));
+        system->install_executor(core::dbus::asio::make_executor(system, io_context));
     }
 
 
     void run()
     {
-        io_service.run();
+        io_context.run();
     }
 
     void stop()
     {
-        io_service.stop();
+        io_context.stop();
     }
 
-    boost::asio::io_service io_service;
-    boost::asio::io_service::work keep_alive;
+    boost::asio::io_context io_context;
+    boost::asio::io_context::work keep_alive;
 
     core::dbus::Bus::Ptr session;
     core::dbus::Bus::Ptr system;

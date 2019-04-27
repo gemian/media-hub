@@ -129,15 +129,15 @@ int main()
                 {
                     // Blocking call to the underlying reactor implementation.
                     // Only returns cleanly when explicitly stopped.
-                    external_services.io_service.run();
+                    external_services.io_context.run();
                 }
                 catch (const std::exception& e)
                 {
-                    std::cerr << "Error while executing the underlying io_service: " << e.what() << std::endl;
+                    std::cerr << "Error while executing the underlying io_context: " << e.what() << std::endl;
                 }
                 catch (...)
                 {
-                    std::cerr << "Error while executing the underlying io_service." << std::endl;
+                    std::cerr << "Error while executing the underlying io_context." << std::endl;
                 }
             }
         }
