@@ -46,17 +46,8 @@ major=$(echo $full_version | cut -d'.' -f1)
 minor=$(echo $full_version | cut -d'.' -f2)
 micro=$(echo $full_version | cut -d'.' -f3)
 major_minor="${major}.${minor}"
+soversion="${major}"
 
-vivid_full_version=$(cat "${dir}"/VERSION.vivid)
-vivid_major=$(echo $vivid_full_version | cut -d'.' -f1)
-vivid_soversion=$vivid_major
-
-if [ "$SERIES" = "vivid" ]
-then
-    soversion=${vivid_soversion}
-else
-    soversion="${major}"
-fi
 [ -n "$soversion" ]
 
 echo "Using SOVERSION $soversion in $SERIES." >&2
