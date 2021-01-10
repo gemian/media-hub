@@ -83,18 +83,24 @@ TEST(GStreamerEngine, DISABLED_setting_uri_and_starting_audio_only_playback_work
     engine.track_meta_data().changed().connect(
                 [](const std::tuple<media::Track::UriType, media::Track::MetaData>& md)
                 {
-                    if (0 < std::get<1>(md).count(xesam::Album::name))
+                    if (0 < std::get<1>(md).count(xesam::Album::name)) {
                         EXPECT_EQ("Ezwa", std::get<1>(md).get(xesam::Album::name));
-                    if (0 < std::get<1>(md).count(xesam::AlbumArtist::name))
+                    }
+                    if (0 < std::get<1>(md).count(xesam::AlbumArtist::name)) {
                         EXPECT_EQ("Ezwa", std::get<1>(md).get(xesam::AlbumArtist::name));
-                    if (0 < std::get<1>(md).count(xesam::Artist::name))
+                    }
+                    if (0 < std::get<1>(md).count(xesam::Artist::name)) {
                         EXPECT_EQ("Ezwa", std::get<1>(md).get(xesam::Artist::name));
-                    if (0 < std::get<1>(md).count(xesam::DiscNumber::name))
+                    }
+                    if (0 < std::get<1>(md).count(xesam::DiscNumber::name)) {
                         EXPECT_EQ("42", std::get<1>(md).get(xesam::DiscNumber::name));
-                    if (0 < std::get<1>(md).count(xesam::Genre::name))
+                    }
+                    if (0 < std::get<1>(md).count(xesam::Genre::name)) {
                         EXPECT_EQ("Test", std::get<1>(md).get(xesam::Genre::name));
-                    if (0 < std::get<1>(md).count(xesam::TrackNumber::name))
+                    }
+                    if (0 < std::get<1>(md).count(xesam::TrackNumber::name)) {
                         EXPECT_EQ("42", std::get<1>(md).get(xesam::TrackNumber::name));
+                    }
                 });
 
     engine.state().changed().connect(
@@ -132,12 +138,15 @@ TEST(GStreamerEngine, DISABLED_setting_uri_and_starting_video_playback_works)
     engine.track_meta_data().changed().connect(
                 [](const std::tuple<media::Track::UriType, media::Track::MetaData>& md)
                 {
-                    if (0 < std::get<1>(md).count(xesam::Album::name))
+                    if (0 < std::get<1>(md).count(xesam::Album::name)) {
                         EXPECT_EQ("Test series", std::get<1>(md).get(xesam::Album::name));
-                    if (0 < std::get<1>(md).count(xesam::Artist::name))
+                    }
+                    if (0 < std::get<1>(md).count(xesam::Artist::name)) {
                         EXPECT_EQ("Canonical", std::get<1>(md).get(xesam::Artist::name));
-                    if (0 < std::get<1>(md).count(xesam::Genre::name))
+                    }
+                    if (0 < std::get<1>(md).count(xesam::Genre::name)) {
                         EXPECT_EQ("Documentary", std::get<1>(md).get(xesam::Genre::name));
+                    }
                 });
 
     engine.state().changed().connect(
@@ -420,17 +429,23 @@ TEST(GStreamerEngine, meta_data_extractor_provides_correct_tags)
         md = engine.meta_data_extractor()->meta_data_for_track_with_uri(test_file_uri);
     });
 
-    if (0 < md.count(xesam::Album::name))
+    if (0 < md.count(xesam::Album::name)) {
         EXPECT_EQ("Test", md.get(xesam::Album::name));
-    if (0 < md.count(xesam::AlbumArtist::name))
+	}
+    if (0 < md.count(xesam::AlbumArtist::name)) {
         EXPECT_EQ("Test", md.get(xesam::AlbumArtist::name));
-    if (0 < md.count(xesam::Artist::name))
+	}
+    if (0 < md.count(xesam::Artist::name)) {
         EXPECT_EQ("Ezwa", md.get(xesam::Artist::name));
-    if (0 < md.count(xesam::DiscNumber::name))
+	}
+    if (0 < md.count(xesam::DiscNumber::name)) {
         EXPECT_EQ("1", md.get(xesam::DiscNumber::name));
-    if (0 < md.count(xesam::Genre::name))
+	}
+    if (0 < md.count(xesam::Genre::name)) {
         EXPECT_EQ("Test", md.get(xesam::Genre::name));
-    if (0 < md.count(xesam::TrackNumber::name))
+	}
+    if (0 < md.count(xesam::TrackNumber::name)) {
         EXPECT_EQ("42", md.get(xesam::TrackNumber::name));
+    }
 }
 

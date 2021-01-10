@@ -5,8 +5,8 @@ Maintainer: Adam Boardman <adamboardman@gmail.com>
 XSBC-Original-Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 Build-Depends: cmake,
                dbus-test-runner <!nocheck>,
-               debhelper (>= 9),
-#               dh-apparmor,
+               debhelper (>= 12),
+               dh-apparmor,
                doxygen <!nodoc>,
                google-mock <!nocheck>,
                graphviz <!nodoc>,

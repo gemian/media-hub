@@ -27,7 +27,7 @@ CONFIGURE_FLAGS += -DENABLE_DOC=OFF
 endif
 
 %:
-	dh $@ --fail-missing -Xusr/lib/libgtest -Xusr/lib/libgmock -- -B build
+	dh $@ --no-parallel -Xusr/lib/libgtest -Xusr/lib/libgmock -- -B build
 
 override_dh_auto_configure:
 	dh_auto_configure -- -DUBUNTU_MEDIA_HUB_VERSION_MAJOR=$(major) -DUBUNTU_MEDIA_HUB_VERSION_MINOR=$(minor) -DUBUNTU_MEDIA_HUB_VERSION_PATCH=$(patch) $(CONFIGURE_FLAGS)
@@ -36,3 +36,6 @@ override_dh_auto_test:
 ifneq ($(DEB_HOST_ARCH),$(findstring $(DEB_HOST_ARCH), $(testskip_architectures)))
 	env -u LD_PRELOAD dh_auto_test
 endif
+
+override_dh_missing:
+	dh_missing --fail-missing
